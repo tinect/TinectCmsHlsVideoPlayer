@@ -1,1 +1,1 @@
-node_modules export-ignore
+**/node_modules export-ignore
