@@ -6,4 +6,5 @@ node_modules
 tinect-cms-hls-video-player.js
 tinect-cms-hls-video-player.css
 vendor
+package-lock.json
 
