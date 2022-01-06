@@ -2,9 +2,9 @@
 
 BASEPATH=$(dirname "$0")
 
-PUBLICSTOREFRONTFOLDER=${BASEPATH}/public/storefront/
+PUBLICSTOREFRONTFOLDER=${BASEPATH}/../public/storefront/
 NODEMODULESFOLDER=${BASEPATH}/node_modules/
-SCSSSTOREFRONTFOLDER=${BASEPATH}/app/storefront/src/scss/
+SCSSSTOREFRONTFOLDER=${BASEPATH}/storefront/src/scss/
 
 mkdir "${PUBLICSTOREFRONTFOLDER}" -p
 mkdir "${SCSSSTOREFRONTFOLDER}" -p
