@@ -1,0 +1,9 @@
+var/cache
+_plyr.package.scss
+src/Resources/public/storefront/hls.light.min.js*
+src/Resources/public/storefront/plyr.min.js*
+node_modules
+tinect-cms-hls-video-player.js
+tinect-cms-hls-video-player.css
+vendor
+

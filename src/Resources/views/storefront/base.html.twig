@@ -1,0 +1,10 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_script_router %}
+    {{ parent() }}
+    <script>
+        window.tinectLazyloadJavascripts = window.tinectLazyloadJavascripts || [];
+        window.tinectLazyloadJavascripts['Plyr'] = '{{ asset('bundles/tinectcmshlsvideoplayer/storefront/plyr.min.js', 'asset') }}';
+        window.tinectLazyloadJavascripts['Hls'] = '{{ asset('bundles/tinectcmshlsvideoplayer/storefront/hls.light.min.js', 'asset') }}';
+    </script>
+{% endblock %}

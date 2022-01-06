@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "hls.js": "1.1.2",
+    "plyr": "3.6.12"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "./package-install.sh"
+  }
+}
