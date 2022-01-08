@@ -16,38 +16,40 @@ export default class VideoPlugin extends Plugin {
         const me = this;
 
         Helper.loadExternalModule('Plyr', () => {
-            Helper.loadExternalModule('Hls', () => {
-                const intersectionObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach((entry) => {
-                        // If intersectionRatio is 0, the target is out of view
-                        // and we do not need to do anything.
-                        if (entry.intersectionRatio <= 0) return;
-
-                        observer.unobserve(entry.target);
-                        this._install(entry.target);
+            if (DomAccess.hasAttribute(me.el, 'data-playlist')) {
+                Helper.loadExternalModule('Hls', () => {
+                    me._install(me.el, (el) => {
+                        this._registerHls(el);
                     });
                 });
-                // start observing
-                intersectionObserver.observe(me.el);
+                return;
+            }
+
+            me._install(me.el, (el) => {
+                this._register(el);
             });
         });
     }
 
-    _install(video) {
+    _install(video, callback) {
+        const intersectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                // If intersectionRatio is 0, the target is out of view
+                // and we do not need to do anything.
+                if (entry.intersectionRatio <= 0) return;
+
+                observer.unobserve(entry.target);
+                callback(entry.target);
+            });
+        });
+        // start observing
+        intersectionObserver.observe(video);
+    }
+
+    _registerHls(video) {
         const me = this;
 
-        const plyrOptions = {
-            controls: ['play-large'],
-        };
-
-        if (DomAccess.hasAttribute(video, 'autoplay')) {
-            video.removeAttribute('preload');
-            plyrOptions.autoplay = true;
-        }
-
-        if (DomAccess.hasAttribute(video, 'loop')) {
-            plyrOptions.loop = {active: false};
-        }
+        const plyrOptions = me._generateOptions(video);
 
         const source = DomAccess.getDataAttribute(video, 'playlist', false);
 
@@ -112,6 +114,30 @@ export default class VideoPlugin extends Plugin {
                 spanQualityElement.innerHTML = 'Auto';
             });
         }
+    }
+
+    _register(video) {
+        const me = this;
+        const plyrOptions = me._generateOptions(video);
+
+        me.initPlayer(video, plyrOptions);
+    }
+
+    _generateOptions(element) {
+        const plyrOptions = {
+            controls: ['play-large'],
+        };
+
+        if (DomAccess.hasAttribute(element, 'autoplay')) {
+            element.removeAttribute('preload');
+            plyrOptions.autoplay = true;
+        }
+
+        if (DomAccess.hasAttribute(element, 'loop')) {
+            plyrOptions.loop = {active: false};
+        }
+
+        return plyrOptions;
     }
 
     initPlayer(element, options) {
