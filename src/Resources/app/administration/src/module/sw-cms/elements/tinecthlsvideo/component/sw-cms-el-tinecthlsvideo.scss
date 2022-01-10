@@ -1,0 +1,19 @@
+.tinecthlsvideo {
+    display: flex;
+    flex-direction: column;
+}
+
+.tinecthlsvideo-wrapper {
+    width: 100%;
+    img {
+        width: 100%;
+    }
+
+    &.align-self-center {
+        align-self: center;
+    }
+
+    &.align-self-end {
+        align-self: flex-end;
+    }
+}

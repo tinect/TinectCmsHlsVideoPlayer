@@ -1,0 +1,16 @@
+{
+    "tinecthlsvideo": {
+        "label": "HLS Video Element",
+        "thumbnailurl": "Thumbnail URL",
+        "playlisturl": "Playlist URL",
+        "videoposition": "Videoposition",
+        "autoplay": "Autoplay",
+        "loop": "Loop",
+        "muted": "Stummgeschaltet",
+        "controls": "Einstellungen",
+        "optionalwidth": "Optionale Breite (in Pixeln)",
+        "left": "Links",
+        "center": "Mitte",
+        "right": "Rechts"
+    }
+}

@@ -1,0 +1,48 @@
+{% block sw_cms_el_config_colorstage %}
+    <div class="sw-cms-el-config-tinecthlsvideo">
+
+        {% block sw_cms_el_text_config_content %}
+
+            <sw-text-field :label="$tc('tinecthlsvideo.playlisturl')"
+                           v-model="element.config.playlisturl.value">
+            </sw-text-field>
+
+            <sw-text-field :label="$tc('tinecthlsvideo.thumbnailurl')"
+                           v-model="element.config.thumbnailurl.value">
+            </sw-text-field>
+
+            <div class="sw-cms-el-config-tinecthlsvideo__position">
+                <sw-select-field :label="$tc('tinecthlsvideo.videoposition')"
+                                 v-model="element.config.videoposition.value">
+                    <option value="" v-html="$tc('tinecthlsvideo.left')"></option>
+                    <option value="align-self-center" v-html="$tc('tinecthlsvideo.center')"></option>
+                    <option value="align-self-end" v-html="$tc('tinecthlsvideo.right')"></option>
+                </sw-select-field>
+
+                <sw-number-field :label="$tc('tinecthlsvideo.optionalwidth')"
+                                 numberType="int"
+                                 v-model="element.config.optionalwidth.value">
+                </sw-number-field>
+            </div>
+
+
+            <div class="sw-cms-el-config-tinecthlsvideo__controls">
+                <sw-switch-field
+                    :label="$tc('tinecthlsvideo.autoplay')"
+                    v-model="element.config.autoplay.value">
+                </sw-switch-field>
+
+                <sw-switch-field
+                    :label="$tc('tinecthlsvideo.loop')"
+                    v-model="element.config.loop.value">
+                </sw-switch-field>
+
+                <sw-switch-field
+                    :label="$tc('tinecthlsvideo.muted')"
+                    v-model="element.config.muted.value">
+                </sw-switch-field>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}
+
