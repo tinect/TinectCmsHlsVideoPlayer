@@ -1,2 +1,11 @@
 @import "plyr.package";
 //plyr.package will be auto added by .maintenance/setup.sh
+
+.tinecthlsvideo {
+    display: flex;
+    flex-direction: column;
+}
+
+.tinecthlsvideo-wrapper {
+    width: 100%;
+}

@@ -1,0 +1,13 @@
+{% block element_hlsvideo %}
+    {% set id = element.id %}
+    {% set config = element.fieldConfig.elements %}
+
+    <div class="tinecthlsvideo">
+        <div class="tinecthlsvideo-wrapper {{ config.videoposition.value }}" preload="none" {% if config.optionalwidth.value %} style="max-width: {{ config.optionalwidth.value }}px"{% endif %}>
+            <video preload="none" crossorigin{% if config.autoplay.value %} autoplay{% endif %}{% if config.loop.value %} loop{% endif %}{% if config.muted.value %} muted{% endif %}
+                    data-poster="{{ config.thumbnailurl.value }}"
+                    data-playlist="{{ config.playlisturl.value }}">
+            </video>
+        </div>
+    </div>
+{% endblock %}

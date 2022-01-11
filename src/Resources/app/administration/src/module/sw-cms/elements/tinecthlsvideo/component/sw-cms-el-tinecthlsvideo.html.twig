@@ -1,0 +1,14 @@
+{% block sw_cms_element_tinecthlsvideo %}
+    <div class="tinecthlsvideo">
+        <div :class="[
+            'tinecthlsvideo-wrapper',
+            (element.config.videoposition.value ? element.config.videoposition.value : ''),
+        ]" :style="{
+            'max-width': (element.config.optionalwidth.value ? element.config.optionalwidth.value + 'px' : '100%')
+         }">
+
+            <img v-if="element.config.thumbnailurl.value" :src="element.config.thumbnailurl.value">
+            <img v-else :src="'/tinectcmshlsvideoplayer/static/img/cms/component_hls.jpg' | asset">
+        </div>
+    </div>
+{% endblock %}
