@@ -4,6 +4,10 @@
 .tinecthlsvideo {
     display: flex;
     flex-direction: column;
+
+    .plyr__poster {
+        background-size: 100% auto;
+    }
 }
 
 .tinecthlsvideo-wrapper {
