@@ -58,7 +58,9 @@ export default class VideoPlugin extends Plugin {
             me.initPlayer(video, plyrOptions);
         } else {
             const hlsConfig = {
-                capLevelToPlayerSize: true
+                capLevelToPlayerSize: true,
+                abrEwmaDefaultEstimate: 500000000 * 1.2,
+                testBandwidth: false
             };
             if (DomAccess.getAttribute(video, 'preload', false) === 'none') {
                 hlsConfig.autoStartLoad = false;
@@ -66,22 +68,17 @@ export default class VideoPlugin extends Plugin {
 
             const hls = new Hls(hlsConfig);
             hls.loadSource(source);
-            hls.attachMedia(video);
-
-            hls.currentLevel = -1;
 
             let spanQualityElement = null;
 
             hls.on(Hls.Events.MANIFEST_PARSED, () => {
-                const availableQualities = hls.levels.map(function (l) {
-                    return l.height
-                });
+                const availableQualities = hls.levels.map(l => l.height);
                 availableQualities.unshift(0) //prepend 0 to quality array;
 
                 // Add new qualities to option
                 plyrOptions.quality = {
-                    default: 0,
                     options: availableQualities,
+                    default: availableQualities[availableQualities - 1],
                     // this ensures Plyr to use Hls to update quality level
                     forced: true,
                     onChange: (e) => {
@@ -89,15 +86,18 @@ export default class VideoPlugin extends Plugin {
                     },
                 }
 
-                hls.currentLevel = -1;
-
                 const player = me.initPlayer(video, plyrOptions);
                 player.on('play', () => {
                     hls.startLoad();
                 });
+                hls.attachMedia(video);
+
+                hls.currentLevel = -1;
 
                 spanQualityElement = document.querySelector(".plyr__controls [data-plyr='quality'][value='0'] span");
-                spanQualityElement.innerHTML = 'Auto';
+                if (spanQualityElement) {
+                    spanQualityElement.innerHTML = 'Auto';
+                }
             });
 
             hls.on(Hls.Events.LEVEL_SWITCHED, function (event, data) {
