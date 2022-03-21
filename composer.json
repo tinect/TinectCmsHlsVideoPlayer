@@ -2,7 +2,7 @@
   "name": "tinect/cms-hls-video-player",
   "description": "This plugin gives the ability to add hls video into cms elements",
   "type": "shopware-platform-plugin",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "authors": [
     {
       "name": "Tinect"
